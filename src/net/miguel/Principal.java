@@ -16,7 +16,7 @@ public class Principal {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) { //PROBA DE COMMIT
 		Scanner lector = new Scanner(System.in);
 		// ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
 
