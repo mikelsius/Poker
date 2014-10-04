@@ -12,7 +12,8 @@ import java.util.ArrayList;
 public class Jugador {
 
 	private String nom;
-	private int diners = 100;
+	private float diners = 100;
+	public boolean estaJugan;
 	ArrayList<Carta> CartesJugador = new ArrayList<Carta>();
 
 	public ArrayList<Carta> getCartesJugador() {
@@ -27,6 +28,14 @@ public class Jugador {
 		nom = elnom;
 	}
 
+	public boolean setestaJugan(boolean juga){
+		estaJugan = juga;
+		return estaJugan;
+	}
+	public boolean getestaJugan(){
+		return estaJugan;
+	}
+
 	public void darCarta(Carta miCarta){
 	     CartesJugador.add(miCarta);
 	}
@@ -39,12 +48,12 @@ public class Jugador {
 		this.nom = nom;
 	}
 
-	public int getDiners() {
+	public float getDiners() {
 		return diners;
 	}
 
-	public void setDiners(int diners) {
-		this.diners = diners;
+	public void setDiners(float f) {
+		this.diners = f;
 	}
 
 	public String toString() {
