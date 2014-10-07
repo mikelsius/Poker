@@ -1,6 +1,7 @@
 package net.miguel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ public class Joc {
     }
     public final void jugarMa(){
         repartirCartes();
+        ordenarCartes(); //PROBA.
         mostrarCartes();
         comprovarResultats();
         recullirCartes();
@@ -33,14 +35,13 @@ public class Joc {
     }
 
     public final void crearCartes() {
-        String[] nomCartes = { "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8",
-                "P9", "P10", "PJ", "PQ", "PK", "D1", "D2", "D3", "D4", "D5",
-                "D6", "D7", "D8", "D9", "D10", "DJ", "DQ", "DK", "T1", "T2",
-                "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "TJ", "TQ",
-                "TK", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9",
-                "C10", "CJ", "CQ", "CK", };
-        for (int i = 0; i < nomCartes.length; i++) {
-            cartas.add(new Carta(nomCartes[i]));
+        String[] palCartes = {"C","D","P","T"}; //Cors,Diamants,Picas,Trebols
+        int[] numCartes = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+
+        for (int i = 0; i < palCartes.length; i++) {
+            for (int j = 0; j < numCartes.length; j++){
+            	cartas.add(new Carta(palCartes[i], numCartes[j]));
+            }
         }
     }
 
@@ -59,6 +60,11 @@ public class Joc {
             }
 
         }
+    }
+    public final void ordenarCartes(){
+    	for (int i = 0; i < jugadors.size(); i++){
+    	Collections.sort(jugadors.get(i).CartesJugador);
+    	}
     }
 
     public final void recullirCartes(){
@@ -103,6 +109,24 @@ public class Joc {
     }
 
     public final void comprovarResultats(){
+    	//Carta Alta
+    	//Parella
+    	//doble parella
+    	//trio
+    	//escalera
+    	//color
+    	//full (pareja+trio)
+    	//poker (4 iguales)
+    	//Escalera de color
+
+    	for (int i = 0; i < jugadors.size(); i++){
+    		int punts = 0;
+    		for (int j = 1; j < jugadors.get(i).CartesJugador.size(); j++){
+    			int cartaActual = jugadors.get(i).CartesJugador.get(i).getNum();
+    			int cartaAnterior = jugadors.get(i).CartesJugador.get(i-1).getNum();
+    		}
+    	}
+
 
     }
     public final void repartirDiners(){
