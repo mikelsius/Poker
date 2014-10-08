@@ -18,13 +18,25 @@ public class Principal {
 	 */
 	public static void main(String[] args) {
 		Scanner lector = new Scanner(System.in);
-		// ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
-
-		System.out.println("Quants jugadors sereu?");
-		int Numjugadors = lector.nextInt();
+		int Numjugadors = 0;
+		boolean esEnter = false;
+		while (!esEnter) {
+			System.out.println("Quants jugadors sereu?");
+			if (lector.hasNextInt()){
+				Numjugadors = lector.nextInt();
+				if (0 < Numjugadors && Numjugadors < 11) {
+					esEnter = true;
+				}else{
+					System.out.println("ha de ser un numero entre 1 i 10");
+				}
+			}else {
+				lector.next();
+			}
+		}
 		Joc Joc1 = new Joc(Numjugadors);
 		while (!Joc1.shaAcabat()){
 			Joc1.jugarMa();
 		}
+
 	}
 }

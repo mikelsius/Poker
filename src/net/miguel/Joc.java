@@ -88,7 +88,7 @@ public class Joc {
 
     public final void ordenarCartes() {
         for (int i = 0; i < jugadors.size(); i++) {
-            Collections.sort(jugadors.get(i).CartesJugador);
+            jugadors.get(i).ordenarCartes();
         }
     }
 
@@ -235,7 +235,6 @@ public class Joc {
                 jugadors.get(i).setDiners(
                         jugadors.get(i).getDiners() + bote / j);
                 System.out.println("El jugador "+jugadors.get(i).getNom()+" ha guanyat "+ bote/j + " euros.");
-                System.out.println();
             }
         }
         bote = 0;

@@ -4,6 +4,7 @@
 package net.miguel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author Mikel
@@ -61,6 +62,9 @@ public class Jugador {
 	}
 	public int getPunts() {
 		return this.punts;
+	}
+	public void ordenarCartes(){
+		Collections.sort(CartesJugador);
 	}
 
 	public String toString() {
