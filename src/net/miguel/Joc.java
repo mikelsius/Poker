@@ -21,11 +21,13 @@ public class Joc {
 
     public final void jugarMa() {
         repartirCartes();
-        ordenarCartes(); // PROBA.
+        ordenarCartes();
         mostrarCartes();
         comprovarResultats();
+        seleccionarGuanyadors();
         recullirCartes();
         repartirDiners();
+        comprobarQueTenenDiners();
     }
 
     public final void crearJugadors() {
@@ -48,10 +50,28 @@ public class Joc {
 
     public final boolean shaAcabat() {
         if (jugadors.size() <= 1) {
+        	if (jugadors.size() == 1){
+        		System.out.println("////////////////////////////////");
+        		System.out.println("Ha guanyat el jugador "+jugadors.get(0).getNom());
+        		System.out.println("////////////////////////////////");
+        	}
+        	if (jugadors.size() < 1) {
+        		System.out.println("////////////////////////////////");
+        		System.out.println("Tots els jugadors s'han retirat!");
+        		System.out.println("////////////////////////////////");
+        	}
             return true;
         } else {
             return false;
         }
+    }
+    public final void comprobarQueTenenDiners(){
+    	for (int i = 0; i < jugadors.size(); i++) {
+    	if (jugadors.get(i).getDiners() == 0) {//Si el jugador te 0 euros l'eliminem.
+    		System.out.println(jugadors.get(i).getNom() + "no tens diners per jugar. Eliminat.");
+    		jugadors.remove(i);
+    	}
+    	}
     }
 
     public final void repartirCartes() {
@@ -93,8 +113,13 @@ public class Joc {
                 System.out.println("Vols [A]postar, [P]asar o [R]etirarte?");
                 paraula = lector.next();
                 if (paraula.equals("A")) { // El jugador aposta.
+                	if (jugadors.get(i).getDiners() < 10) { //Si el jugador te menys de 10 euros.
+                		bote += jugadors.get(i).getDiners();
+                		jugadors.get(i).setDiners(0);
+                	} else {
                     jugadors.get(i).setDiners(jugadors.get(i).getDiners() - 10);
                     bote += 10;
+                	}
                     semafor = true;
                 }
                 if (paraula.equals("P")) { // El jugador pasa d'aquesta ma.
@@ -142,43 +167,60 @@ public class Joc {
                     repetidor++;
                 } else {
                     if (repetidor == 2) { // PARELLA
-                        punts += 1000;
+                        punts += 1000 + cartaAnterior *2;
                     }
                     if (repetidor == 3) { // TRIO
-                        punts += 3000;
+                        punts += 3000 + cartaAnterior *3;
                     }
                     if (repetidor == 4) { // POKER
-                        punts += 5000;
+                        punts += 5000 + cartaAnterior *4;
                     }
                     repetidor = 1;
                 }
                 if (j == 4 && repetidor != 1){
                 	if (repetidor == 2) { // PARELLA
-                        punts += 1000;
+                        punts += 1000 + cartaAnterior *2;
                     }
                     if (repetidor == 3) { // TRIO
-                        punts += 3000;
+                        punts += 3000 + cartaAnterior *3;
                     }
                     if (repetidor == 4) { // POKER
-                        punts += 5000;
+                        punts += 5000 + cartaAnterior *4;
                     }
                 }
 
                 if (cartaActual == (cartaAnterior+1)) {
                     escala++;
                     if (escala == 4){ //ESCALA
-                        punts += 3050;
+                        punts += 3050 + cartaActual;
                     }
                 }
                 if (palActual.equals(palAnterior)) {
                     color++;
                     if (color == 4) { //COLOR
-                        punts += 3150;
+                        punts += 3150 + cartaActual;
                     }
                 }
             }
-            System.out.println("El jugador "+ jugadors.get(i).getNom() + " té :" + punts);
+            jugadors.get(i).setPunts(punts);
+            System.out.println("El jugador "+ jugadors.get(i).getNom() + " té :" + punts +" punts.");
         }
+    }
+    public final void seleccionarGuanyadors(){
+    	int max = 0;
+    	//Miro el que te més punts.
+    	for (int i = 0; i < jugadors.size(); i++) {
+    		int a = jugadors.get(i).getPunts();
+    		if (a > max) {
+    			max = a;
+    		}
+    	}
+    	//Trec els que no tenen el maxim de punts.
+    	for (int i = 0; i < jugadors.size(); i++) {
+    		if (jugadors.get(i).getPunts() != max){
+    			jugadors.get(i).setestaJugan(false);
+    		}
+    	}
     }
 
     public final void repartirDiners() {
@@ -192,6 +234,8 @@ public class Joc {
             if (jugadors.get(i).getestaJugan()) {
                 jugadors.get(i).setDiners(
                         jugadors.get(i).getDiners() + bote / j);
+                System.out.println("El jugador "+jugadors.get(i).getNom()+" ha guanyat "+ bote/j + " euros.");
+                System.out.println();
             }
         }
         bote = 0;

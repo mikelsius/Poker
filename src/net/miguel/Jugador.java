@@ -14,6 +14,7 @@ public class Jugador {
 	private String nom;
 	private float diners = 100;
 	public boolean estaJugan;
+	public int punts = 0;
 	ArrayList<Carta> CartesJugador = new ArrayList<Carta>();
 
 	public ArrayList<Carta> getCartesJugador() {
@@ -54,6 +55,12 @@ public class Jugador {
 
 	public void setDiners(float f) {
 		this.diners = f;
+	}
+	public void setPunts(int puntss) {
+		this.punts = puntss;
+	}
+	public int getPunts() {
+		return this.punts;
 	}
 
 	public String toString() {
