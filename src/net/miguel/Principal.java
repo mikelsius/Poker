@@ -37,6 +37,5 @@ public class Principal {
 		while (!Joc1.shaAcabat()){
 			Joc1.jugarMa();
 		}
-
 	}
 }
