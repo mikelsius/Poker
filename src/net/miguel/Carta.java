@@ -8,28 +8,56 @@ package net.miguel;
  *
  */
 public class Carta implements Comparable<Carta> {
+	/**
+	 * pal de la carta
+	 */
 	private String pal;
+	/**
+	 * numero de la carta.
+	 */
 	private int num;
-
-	public Carta (String Pal, int Num){
-		pal = Pal;
-		num = Num;
+	/**
+	 *
+	 * @param pal1 de la carta
+	 * @param num1 de la carta
+	 */
+	public Carta(String pal1, int num1) {
+		pal = pal1;
+		num = num1;
 	}
-    public String getNom() {
+	/**
+	 *
+	 * @return el nom
+	 */
+    public final String getNom() {
 		return pal + num;
 	}
-    public String getPal(){
+    /**
+     *
+     * @return pal de carta
+     */
+    public final String getPal() {
     	return pal;
     }
-	public String toString() {
+    /**
+     *@return nom de la carta
+     */
+	public final String toString() {
         return pal + num;
 	}
-	public int getNum() {
+	/**
+	 *
+	 * @return num de la carta
+	 */
+	public final int getNum() {
 		return num;
 	}
-
-	public int compareTo(Carta x) {
-		if (this.num > x.num){
+	/**
+	 *@return metode d'ordenacio, ordena les cartes.
+	 *@param x carta que li passem per comparar.
+	 */
+	public final int compareTo(Carta x) {
+		if (this.num > x.num) {
 			return 1;
 		} else if (this.num < x.num) {
 			return -1;

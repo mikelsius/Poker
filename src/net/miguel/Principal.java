@@ -2,40 +2,41 @@
  *
  */
 package net.miguel;
-
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
  * @author Mikel
  *
  */
-public class Principal {
 
+public class Principal {
 	/**
-	 * @param args
+	 * maxim de jugadors
+	 */
+	public static final int MAXJUGADORS = 11;
+	/**
+	 * @param args.
 	 */
 	public static void main(String[] args) {
 		Scanner lector = new Scanner(System.in);
-		int Numjugadors = 0;
+		int numjugadors = 0;
 		boolean esEnter = false;
 		while (!esEnter) {
 			System.out.println("Quants jugadors sereu?");
-			if (lector.hasNextInt()){
-				Numjugadors = lector.nextInt();
-				if (0 < Numjugadors && Numjugadors < 11) {
+			if (lector.hasNextInt()) {
+				numjugadors = lector.nextInt();
+				if (0 < numjugadors && numjugadors < MAXJUGADORS) {
 					esEnter = true;
-				}else{
+				} else {
 					System.out.println("ha de ser un numero entre 1 i 10");
 				}
-			}else {
+			} else {
 				lector.next();
 			}
 		}
-		Joc Joc1 = new Joc(Numjugadors);
-		while (!Joc1.shaAcabat()){
-			Joc1.jugarMa();
+		Joc joc1 = new Joc(numjugadors);
+		while (!joc1.shaAcabat()) {
+			joc1.jugarMa();
 		}
 
 	}

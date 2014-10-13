@@ -11,64 +11,116 @@ import java.util.Collections;
  *
  */
 public class Jugador {
-
+	/**
+	 * nom del jugador
+	 */
 	private String nom;
+	/**
+	 * diners que te
+	 */
 	private float diners = 100;
-	public boolean estaJugan;
-	public int punts = 0;
-	ArrayList<Carta> CartesJugador = new ArrayList<Carta>();
-
-	public ArrayList<Carta> getCartesJugador() {
-		return CartesJugador;
+	/**
+	 * variable que ens diu si el jugador esta jugan
+	 * aquesta ronda o no.
+	 */
+	private boolean estaJugan;
+	/**
+	 * punts del jugador
+	 */
+	private int punts = 0;
+	/**
+	 * creem un Arraylist de cartes per cada jugador.
+	 */
+	ArrayList<Carta> cartesJugador = new ArrayList<Carta>();
+	/**
+	 *
+	 * @return ens dona les cartes que te el jugador.
+	 */
+	public final ArrayList<Carta> getCartesJugador() {
+		return cartesJugador;
 	}
-
-	public void setCartesJugador(ArrayList<Carta> cartesJugador) {
-		CartesJugador = cartesJugador;
-	}
-
-	public Jugador(String elnom){
+	/**
+	 *
+	 * @param elnom contructor, li pasem el nom del jugador.
+	 */
+	public Jugador(String elnom) {
 		nom = elnom;
 	}
-
-	public boolean setestaJugan(boolean juga){
+	/**
+	 *
+	 * @param juga li passem si continua jugan o no.
+	 * @return retorna l'estat del jugador.
+	 */
+	public final boolean setestaJugan(boolean juga) {
 		estaJugan = juga;
 		return estaJugan;
 	}
-	public boolean getestaJugan(){
+	/**
+	 *
+	 * @return ens diu si el jugador esta jugan actualment.
+	 */
+	public final boolean getestaJugan() {
 		return estaJugan;
 	}
-
-	public void darCarta(Carta miCarta){
-	     CartesJugador.add(miCarta);
+	/**
+	 *
+	 * @param miCarta li sumem una carta a l'arraylist de cartas.
+	 */
+	public final void darCarta(Carta miCarta) {
+	     cartesJugador.add(miCarta);
 	}
-
-    public String getNom() {
+	/**
+	 *
+	 * @return ens diu el nom del jugador.
+	 */
+    public final String getNom() {
 		return nom;
 	}
-
-	public void setNom(String nom) {
+    /**
+     *
+     * @param nom li passem el nou nom
+     */
+	public final void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	public float getDiners() {
+	/**
+	 *
+	 * @return retorna els diners del jugador.
+	 */
+	public final float getDiners() {
 		return diners;
 	}
-
-	public void setDiners(float f) {
+	/**
+	 *
+	 * @param f li assignem uns dinrs al jugador.
+	 */
+	public final void setDiners(float f) {
 		this.diners = f;
 	}
-	public void setPunts(int puntss) {
+	/**
+	 *
+	 * @param puntss nous punts del jugador
+	 */
+	public final void setPunts(int puntss) {
 		this.punts = puntss;
 	}
-	public int getPunts() {
+	/**
+	 *
+	 * @return retorna els punts del jugador
+	 */
+	public final int getPunts() {
 		return this.punts;
 	}
-	public void ordenarCartes(){
-		Collections.sort(CartesJugador);
+	/**
+	 * ordena les cartes del jugador.
+	 */
+	public final void ordenarCartes() {
+		Collections.sort(cartesJugador);
 	}
-
-	public String toString() {
+	/**
+	 *@return nom del jugador.
+	 */
+	public final String toString() {
         return nom;
     }
-
 }
